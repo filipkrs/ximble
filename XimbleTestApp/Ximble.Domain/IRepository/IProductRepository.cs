@@ -7,6 +7,6 @@ namespace Ximble.Domain.IRepository
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> Search(string name, DateTime SellingStartDate, string keywords, int page, int pagesize);
+        CountedList<Product> Search(string name, DateTime SellingStartDate, string keywords, int page, int pagesize);
     }
 }

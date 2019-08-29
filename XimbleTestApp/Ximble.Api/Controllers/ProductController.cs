@@ -26,11 +26,29 @@ namespace Ximble.Api.Controllers
         public IActionResult Search(string name, DateTime sellingStartDate, string keywords, int page = 1, int pagesize = 10)
         {
             var products = productRepository
-                .Search(name, sellingStartDate, keywords, page, pagesize)
-                .ToList();
+                .Search(name, sellingStartDate, keywords, page, pagesize);
 
-            var result = new PagedList<Product>(1, page, pagesize, products);
+            var result = new PagedList<Product>(products.TotalCount, page, pagesize, products.Items);
             return Ok(result);    
+        }
+
+        [HttpGet("purchasing-report")]
+        public IActionResult PurchasingReport(DateTime from, DateTime to)
+        {
+            /*
+             * select pod.duedate as Date, sum(pod.linetotal) as SumOfTraffic, sum(pod.orderqty) as ProductsSold 
+                from purchasing.purchaseorderdetail pod
+                where pod.duedate > '2013-01-01'
+                and pod.duedate < '2014-01-01'
+                group by pod.duedate
+                order by pod.duedate
+
+                select sum(pod.linetotal) as TotalTraffic, sum(pod.orderqty) as ProductsSold
+                from purchasing.purchaseorderdetail pod
+                where pod.duedate > '2013-01-01'
+                and pod.duedate < '2014-01-01'
+             */
+            return null;
         }
     }
 }

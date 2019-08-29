@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ximble.DataAccess\Ximble.DataAccess.csproj" />
     <ProjectReference Include="..\Ximble.Domain\Ximble.Domain.csproj" />
   </ItemGroup>
 
